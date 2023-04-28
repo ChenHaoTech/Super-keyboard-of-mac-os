@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>1_app</key>
+	<string>Microsoft Edge</string>
+	<key>1_title</key>
+	<string>Hammerspoon docs: hs.application - 选项卡组 锤子 的一部分 - Microsoft Edge - 陈浩</string>
+	<key>2_app</key>
+	<string>JetBrains Rider</string>
+	<key>2_title</key>
+	<string>808__unity – UIChatPageForMatch.cs</string>
+	<key>3_app</key>
+	<string>ChatHub</string>
+	<key>3_title</key>
+	<string></string>
+	<key>4_app</key>
+	<string>Microsoft Edge</string>
+	<key>4_title</key>
+	<string>Hammerspoon docs: hs.application - 选项卡组 锤子 的一部分 - Microsoft Edge - 陈浩</string>
+	<key>5_app</key>
+	<string>Code</string>
+	<key>5_title</key>
+	<string>init.lua</string>
+	<key>H</key>
+	<integer>9578</integer>
+	<key>Setting1</key>
+	<string>Value1</string>
+	<key>Setting2</key>
+	<string>Value2</string>
+	<key>Setting3</key>
+	<true/>
+</dict>
+</plist>
