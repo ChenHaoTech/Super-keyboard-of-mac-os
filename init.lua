@@ -1,3 +1,4 @@
+-- https://www.hammerspoon.org/docs/hs.window.html#find
 -- 启用 Spotlight 支持
 hs.application.enableSpotlightForNameSearches(true)
 
@@ -11,30 +12,38 @@ function printTable(tbl)
 end
 
 function activateWindow(idx)
-    local appName = windows_preferences[idx .. "_app"]
-    local winTitle = windows_preferences[idx .. "_title"]
-    if appName == nil or winTitle == nil then
+    local appId = windows_preferences[idx .. "_app"]
+    local winId = windows_preferences[idx .. "_id"]
+    if appId == nil or winId == nil then
         hs.alert.show("No record for idx: " .. idx)
         return
     end
     -- 获取应用程序对象
-    local app = hs.application.get(appName)
+    local app = hs.application.get(appId)
 
     -- 如果找到了应用程序对象，获取窗口对象
     if app then
-        local win = app:findWindow(winTitle)
-
+        local win = hs.fnutils.find(app:visibleWindows(), function(win)
+            return win:id() == winId
+        end)
         -- 如果找到了窗口对象，激活窗口；否则提示未找到窗口对象
-        if win then
-            win:becomeMain()
+        if win ~= null then
+            -- win:becomeMain()
             win:focus()
         else
-            -- hs.alert.show("Window not found for title: " .. winTitle .. ",acitve app")
-            app:activate()
-            windows_preferences[idx .. "_title"] = app:focusedWindow():title()
+            hs.alert.show("Window not found for title: " .. winId .. ",acitve app" .. app:name())
+            win = hs.window.find(wid)
+            if (win ~= nil) then
+                win:focus()
+                windows_preferences[idx .. "_id"] = win:id()
+
+            else
+                app:activate()
+                windows_preferences[idx .. "_id"] = app:focusedWindow():id()
+            end
         end
     else
-        hs.alert.show("Application not found: " .. appName)
+        hs.alert.show("Application not found: " .. appId)
     end
 end
 
@@ -44,7 +53,7 @@ function updateWindowsPrefFromFrontmostWindow(idx)
 
     -- 如果找到了应用程序对象，获取应用程序名称；否则提示未找到应用程序对象
     if frontmostApp then
-        local appName = frontmostApp:name()
+        local appId = frontmostApp:pid()
 
         -- 获取当前获取焦点的窗口对象
         local win = frontmostApp:focusedWindow()
@@ -54,8 +63,8 @@ function updateWindowsPrefFromFrontmostWindow(idx)
             local wid = win:id()
 
             -- 更新 windows_preferences 变量
-            windows_preferences[idx .. "_app"] = appName
-            windows_preferences[idx .. "_title"] = wid
+            windows_preferences[idx .. "_app"] = appId
+            windows_preferences[idx .. "_id"] = wid
 
             -- 在弹窗中显示窗口标题，并将更新后的 windows_preferences 变量写入文件
             hs.alert.show("record Window: " .. wid)

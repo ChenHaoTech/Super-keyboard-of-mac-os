@@ -3,32 +3,28 @@
 <plist version="1.0">
 <dict>
 	<key>1_app</key>
-	<string>Microsoft Edge</string>
-	<key>1_title</key>
-	<string>Hammerspoon docs: hs.application - 选项卡组 锤子 的一部分 - Microsoft Edge - 陈浩</string>
+	<integer>623</integer>
+	<key>1_id</key>
+	<integer>120</integer>
 	<key>2_app</key>
-	<string>JetBrains Rider</string>
-	<key>2_title</key>
-	<string>808__unity – UIChatPageForMatch.cs</string>
+	<integer>79218</integer>
+	<key>2_id</key>
+	<integer>15503</integer>
 	<key>3_app</key>
-	<string>ChatHub</string>
-	<key>3_title</key>
-	<string></string>
+	<integer>623</integer>
+	<key>3_id</key>
+	<integer>16725</integer>
 	<key>4_app</key>
-	<string>Microsoft Edge</string>
-	<key>4_title</key>
-	<string>Hammerspoon docs: hs.application - 选项卡组 锤子 的一部分 - Microsoft Edge - 陈浩</string>
-	<key>5_app</key>
 	<string>Code</string>
-	<key>5_title</key>
-	<string>init.lua</string>
-	<key>H</key>
-	<integer>9578</integer>
-	<key>Setting1</key>
-	<string>Value1</string>
-	<key>Setting2</key>
-	<string>Value2</string>
-	<key>Setting3</key>
-	<true/>
+	<key>4_id</key>
+	<integer>16556</integer>
+	<key>5_app</key>
+	<integer>84320</integer>
+	<key>5_id</key>
+	<integer>16264</integer>
+	<key>9_app</key>
+	<string>Hammerspoon</string>
+	<key>9_id</key>
+	<integer>14876</integer>
 </dict>
 </plist>
