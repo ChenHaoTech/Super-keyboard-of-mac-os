@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>1_app</key>
-	<integer>623</integer>
+	<string>com.microsoft.edgemac</string>
 	<key>1_id</key>
-	<integer>120</integer>
+	<integer>18129</integer>
 	<key>2_app</key>
-	<integer>90045</integer>
+	<string>com.microsoft.VSCode</string>
 	<key>2_id</key>
-	<integer>17206</integer>
+	<integer>18865</integer>
 	<key>3_app</key>
-	<integer>625</integer>
+	<string>org.hammerspoon.Hammerspoon</string>
 	<key>3_id</key>
-	<integer>74</integer>
-	<key>4_app</key>
-	<integer>71311</integer>
-	<key>4_id</key>
 	<integer>14876</integer>
+	<key>4_app</key>
+	<integer>94977</integer>
+	<key>4_id</key>
+	<integer>18073</integer>
 	<key>5_app</key>
 	<integer>84320</integer>
 	<key>5_id</key>

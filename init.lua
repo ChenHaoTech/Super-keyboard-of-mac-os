@@ -6,6 +6,23 @@ local windows_preferences_path = "/Users/apple/.hammerspoon/window_config.plist"
 Windows_preferences = hs.plist.read(windows_preferences_path)
 BindFlag = false; -- 是否开启 bind flag
 
+local function _debug() hs.alert.show("debug demo") end
+
+-- DEBUG 代码
+DEBUG = false; -- 是否开启 bind flag
+local debugHokey = nil;
+local function toggleDebug()
+    DEBUG = not DEBUG
+    if DEBUG then
+        hs.alert.show("debug mode on")
+        debugHokey =
+            hs.hotkey.new({"cmd"}, "F12", function() _debug() end):enable()
+    else
+        hs.alert.show("debug mode off")
+        if debugHokey ~= nil then debugHokey:disable() end
+    end
+end
+
 local function printTable(tbl)
     for k, v in pairs(tbl) do print(k .. ": " .. tostring(v)) end
 end
@@ -18,34 +35,43 @@ local function activateWindow(idx)
         return
     end
     -- 获取应用程序对象
-    local app = hs.application.get(appId)
-
-    -- 如果找到了应用程序对象，获取窗口对象
-    if app then
-        local win = hs.fnutils.find(app:visibleWindows(),
-                                    function(win)
-            return win:id() == winId
-        end)
-        -- 如果找到了窗口对象，激活窗口；否则提示未找到窗口对象
-        if win ~= nil then
-            -- win:becomeMain()
-            win:focus()
+    local apps = hs.application.applicationsForBundleID(appId)
+    if #apps ~= 1 then
+        if #apps >1 then
+            hs.alert.show("apps is multi")
         else
-            hs.alert.show("Window not found for title: " .. winId ..
-                              ",acitve app" .. app:name())
-            win = hs.window.find(winId)
-            if (win ~= nil) then
-                win:focus()
-                Windows_preferences[idx .. "_id"] = win:id()
-
-            else
-                app:activate()
-                Windows_preferences[idx .. "_id"] = app:focusedWindow():id()
-            end
+            hs.alert.show("apps is not running")
         end
-    else
-        hs.alert.show("Application not found: " .. appId)
+        return
     end
+    hs.fnutils.each(apps, function(app)
+        -- 如果找到了应用程序对象，获取窗口对象
+        if app ~= nil then
+            local win = hs.fnutils.find(app:visibleWindows(), function(win)
+                return win:id() == winId
+            end)
+            -- 如果找到了窗口对象，激活窗口；否则提示未找到窗口对象
+            if win ~= nil then
+                -- win:becomeMain()
+                win:focus()
+            else
+                hs.alert.show("Window not found for title: " .. winId ..
+                                  ",acitve app" .. app:name())
+                win = hs.window.find(winId)
+                if (win ~= nil) then
+                    win:focus()
+                    Windows_preferences[idx .. "_id"] = win:id()
+
+                else
+                    hs.application.launchOrFocusByBundleID(appId)
+                    -- app:activate()
+                    Windows_preferences[idx .. "_id"] = app:focusedWindow():id()
+                end
+            end
+        else
+            hs.alert.show("Application not found: " .. appId)
+        end
+    end)
 end
 
 local function updateWindowsPrefFromFrontmostWindow(idx)
@@ -54,7 +80,7 @@ local function updateWindowsPrefFromFrontmostWindow(idx)
 
     -- 如果找到了应用程序对象，获取应用程序名称；否则提示未找到应用程序对象
     if frontmostApp then
-        local appId = frontmostApp:pid()
+        local appId = frontmostApp:bundleID()
 
         -- 获取当前获取焦点的窗口对象
         local win = frontmostApp:focusedWindow()
@@ -83,6 +109,7 @@ local function updateWindowsPrefFromFrontmostWindow(idx)
     end
 end
 
+-- toggle 
 hs.hotkey.bind({"cmd", "alt", "shift", "ctrl"}, "0", function()
     BindFlag = not BindFlag
     if BindFlag then
@@ -90,6 +117,7 @@ hs.hotkey.bind({"cmd", "alt", "shift", "ctrl"}, "0", function()
     else
         hs.alert.show("exit bind mode")
     end
+    toggleDebug()
 end)
 
 for i = 1, 9 do
@@ -106,6 +134,7 @@ end
 -- reload
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
     print("config reload ")
+    hs.openConsole()
     hs.reload()
 end)
 
@@ -141,3 +170,7 @@ end)
 --     end
 -- end):start()
 
+-- hs.alert.show("fuck",{
+--   fillColor = { white = 0, alpha = 0.8 },
+--   textColor = { red = 1 }
+-- })
