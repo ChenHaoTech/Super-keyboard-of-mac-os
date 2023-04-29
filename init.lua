@@ -2,18 +2,17 @@
 -- 启用 Spotlight 支持
 hs.application.enableSpotlightForNameSearches(true)
 
-windows_preferences_path = "/Users/apple/.hammerspoon/window_config.plist"
-windows_preferences = hs.plist.read(windows_preferences_path)
+local windows_preferences_path = "/Users/apple/.hammerspoon/window_config.plist"
+Windows_preferences = hs.plist.read(windows_preferences_path)
+BindFlag = false; -- 是否开启 bind flag
 
-function printTable(tbl)
-    for k, v in pairs(tbl) do
-        print(k .. ": " .. tostring(v))
-    end
+local function printTable(tbl)
+    for k, v in pairs(tbl) do print(k .. ": " .. tostring(v)) end
 end
 
-function activateWindow(idx)
-    local appId = windows_preferences[idx .. "_app"]
-    local winId = windows_preferences[idx .. "_id"]
+local function activateWindow(idx)
+    local appId = Windows_preferences[idx .. "_app"]
+    local winId = Windows_preferences[idx .. "_id"]
     if appId == nil or winId == nil then
         hs.alert.show("No record for idx: " .. idx)
         return
@@ -23,23 +22,25 @@ function activateWindow(idx)
 
     -- 如果找到了应用程序对象，获取窗口对象
     if app then
-        local win = hs.fnutils.find(app:visibleWindows(), function(win)
+        local win = hs.fnutils.find(app:visibleWindows(),
+                                    function(win)
             return win:id() == winId
         end)
         -- 如果找到了窗口对象，激活窗口；否则提示未找到窗口对象
-        if win ~= null then
+        if win ~= nil then
             -- win:becomeMain()
             win:focus()
         else
-            hs.alert.show("Window not found for title: " .. winId .. ",acitve app" .. app:name())
-            win = hs.window.find(wid)
+            hs.alert.show("Window not found for title: " .. winId ..
+                              ",acitve app" .. app:name())
+            win = hs.window.find(winId)
             if (win ~= nil) then
                 win:focus()
-                windows_preferences[idx .. "_id"] = win:id()
+                Windows_preferences[idx .. "_id"] = win:id()
 
             else
                 app:activate()
-                windows_preferences[idx .. "_id"] = app:focusedWindow():id()
+                Windows_preferences[idx .. "_id"] = app:focusedWindow():id()
             end
         end
     else
@@ -47,7 +48,7 @@ function activateWindow(idx)
     end
 end
 
-function updateWindowsPrefFromFrontmostWindow(idx)
+local function updateWindowsPrefFromFrontmostWindow(idx)
     -- 获取当前位于前台的应用程序对象
     local frontmostApp = hs.application.frontmostApplication()
 
@@ -63,15 +64,17 @@ function updateWindowsPrefFromFrontmostWindow(idx)
             local wid = win:id()
 
             -- 更新 windows_preferences 变量
-            windows_preferences[idx .. "_app"] = appId
-            windows_preferences[idx .. "_id"] = wid
+            Windows_preferences[idx .. "_app"] = appId
+            Windows_preferences[idx .. "_id"] = wid
 
             -- 在弹窗中显示窗口标题，并将更新后的 windows_preferences 变量写入文件
-            hs.alert.show("record Window: " .. wid)
-            hs.plist.write(windows_preferences_path, windows_preferences)
+            hs.alert.show(string.format("record Window,id:%s\napp:%s,title:%s",
+                                        wid, frontmostApp:name(), win:title()),
+                          nil, nil, 2)
+            hs.plist.write(windows_preferences_path, Windows_preferences)
 
             -- 打印更新后的 windows_preferences 变量
-            printTable(windows_preferences)
+            printTable(Windows_preferences)
         else
             hs.alert.show("No focused window found")
         end
@@ -80,29 +83,29 @@ function updateWindowsPrefFromFrontmostWindow(idx)
     end
 end
 
-hs.hotkey.bind({"cmd", "alt", "ctrl", "fn"}, "1", function()
-    updateWindowsPrefFromFrontmostWindow(1)
-end)
-
-bindFlag = false;
-
 hs.hotkey.bind({"cmd", "alt", "shift", "ctrl"}, "0", function()
-    bindFlag = true;
-    hs.alert.show("bind mode")
+    BindFlag = not BindFlag
+    if BindFlag then
+        hs.alert.show("bind mode")
+    else
+        hs.alert.show("exit bind mode")
+    end
 end)
 
 for i = 1, 9 do
     hs.hotkey.bind({"cmd", "alt", "shift", "ctrl"}, tostring(i), function()
-        if bindFlag then
+        if BindFlag then
             updateWindowsPrefFromFrontmostWindow(i)
         else
             activateWindow(i)
         end
-        bindFlag = false;
+        BindFlag = false;
     end)
 end
 
+-- reload
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
+    print("config reload ")
     hs.reload()
 end)
 
