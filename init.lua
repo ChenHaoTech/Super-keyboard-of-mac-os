@@ -63,8 +63,7 @@ local function activateWindow(idx)
                     Windows_preferences[idx .. "_id"] = win:id()
 
                 else
-                    hs.application.launchOrFocusByBundleID(appId)
-                    -- app:activate()
+                    app:activate()
                     Windows_preferences[idx .. "_id"] = app:focusedWindow():id()
                 end
             end
