@@ -7,13 +7,13 @@
 	<key>1_id</key>
 	<integer>18129</integer>
 	<key>2_app</key>
-	<string>com.microsoft.VSCode</string>
+	<string>com.jetbrains.rider</string>
 	<key>2_id</key>
-	<integer>18865</integer>
+	<integer>15503</integer>
 	<key>3_app</key>
-	<string>org.hammerspoon.Hammerspoon</string>
+	<string>md.obsidian</string>
 	<key>3_id</key>
-	<integer>14876</integer>
+	<integer>74</integer>
 	<key>4_app</key>
 	<integer>94977</integer>
 	<key>4_id</key>

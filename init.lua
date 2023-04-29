@@ -116,7 +116,7 @@ hs.hotkey.bind({"cmd", "alt", "shift", "ctrl"}, "0", function()
     else
         hs.alert.show("exit bind mode")
     end
-    toggleDebug()
+    -- toggleDebug()
 end)
 
 for i = 1, 9 do
