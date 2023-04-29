@@ -7,9 +7,9 @@
 	<key>1_id</key>
 	<integer>18129</integer>
 	<key>2_app</key>
-	<string>com.jetbrains.rider</string>
+	<string>com.microsoft.VSCode</string>
 	<key>2_id</key>
-	<integer>15503</integer>
+	<integer>20659</integer>
 	<key>3_app</key>
 	<string>md.obsidian</string>
 	<key>3_id</key>
@@ -23,8 +23,8 @@
 	<key>5_id</key>
 	<integer>16264</integer>
 	<key>9_app</key>
-	<string>Hammerspoon</string>
+	<string>com.microsoft.edgemac.app.gabodgbmieebkjkpdlfnnfbjldgadkpg</string>
 	<key>9_id</key>
-	<integer>14876</integer>
+	<integer>20646</integer>
 </dict>
 </plist>

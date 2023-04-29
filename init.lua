@@ -1,5 +1,6 @@
 -- https://www.hammerspoon.org/docs/hs.window.html#find
 -- 启用 Spotlight 支持
+
 hs.application.enableSpotlightForNameSearches(true)
 
 local windows_preferences_path = "/Users/apple/.hammerspoon/window_config.plist"
@@ -7,6 +8,12 @@ Windows_preferences = hs.plist.read(windows_preferences_path)
 BindFlag = false; -- 是否开启 bind flag
 
 local function _debug() hs.alert.show("debug demo") end
+local function keyStroke(modifiers, character)
+  local event = hs.eventtap.event.newKeyEvent(modifiers, string.lower(character), true)
+  event.post(event)
+end
+
+-- keyStroke({}, "A") -- 模拟按下并释放 A 键
 
 -- DEBUG 代码
 DEBUG = false; -- 是否开启 bind flag
@@ -34,6 +41,12 @@ local function activateWindow(idx)
         hs.alert.show("No record for idx: " .. idx)
         return
     end
+
+    local curWin = hs.window.focusedWindow()
+    if curWin:id() == winId then
+        keyStroke({"cmd"},"H")
+        return
+    end
     -- 获取应用程序对象
     local apps = hs.application.applicationsForBundleID(appId)
     if #apps ~= 1 then
@@ -47,7 +60,7 @@ local function activateWindow(idx)
     hs.fnutils.each(apps, function(app)
         -- 如果找到了应用程序对象，获取窗口对象
         if app ~= nil then
-            local win = hs.fnutils.find(app:visibleWindows(), function(win)
+            local win = hs.fnutils.find(app:allWindows(), function(win)
                 return win:id() == winId
             end)
             -- 如果找到了窗口对象，激活窗口；否则提示未找到窗口对象
