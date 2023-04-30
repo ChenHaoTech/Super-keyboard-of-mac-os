@@ -8,3 +8,5 @@ function PrintTable(tbl)
     local str = json.encode(tbl)
     print(str)
 end
+
+function pt(tbl) PrintTable(tbl) end

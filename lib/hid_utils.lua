@@ -1,0 +1,12 @@
+-- hs.hid是Hammerspoon中的一个模块，用于与输入设备（例如键盘、鼠标等）交互。使用hs.hid，可以获取输入设备的信息，例如设备名称、设备ID、按键状态等等。同时，也可以使用hs.hid模块模拟按键输入、鼠标点击等操作。
+-- 以下是一个示例代码，演示如何使用hs.hid模块获取鼠标按键的状态：
+-- local mouse = hs.hid.mouse()
+-- local button1State = mouse:button1()
+-- local button2State = mouse:button2()
+-- local button3State = mouse:button3()
+-- print("鼠标按键1的状态：", button1State)
+-- print("鼠标按键2的状态：", button2State)
+-- print("鼠标按键3的状态：", button3State)
+-- 这个示例代码首先使用hs.hid.mouse()方法获取鼠标设备的对象。然后，它使用button1()、button2()和button3()方法分别获取鼠标按键1、按键2和按键3的状态，并将状态打印出来。在实际使用时，可以根据自己的需要对鼠标设备对象进行进一步的处理，例如监听按键事件、模拟鼠标点击等等。
+
+-- 需要注意的是，在使用Hammerspoon时，需要注意对输入设备进行操作可能会影响到系统的稳定性和安全性，应谨慎使用。同时，如果无法获取输入设备的状态，可能是因为没有对应的权限或设备不可用，可以在操作前进行必要的检查以确保程序的正常运行。

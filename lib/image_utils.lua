@@ -1,0 +1,1 @@
+-- [Hammerspoon docs: hs.image](https://www.hammerspoon.org/docs/hs.image.html)
