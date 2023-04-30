@@ -1,5 +1,1 @@
 -- hs.shortcuts.list()
-
---[[ 
-
- ]]
