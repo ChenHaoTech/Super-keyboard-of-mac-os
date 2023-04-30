@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>1_app</key>
-	<string>QReader.MarginStudyMac</string>
+	<string>com.microsoft.edgemac</string>
 	<key>1_id</key>
-	<integer>21843</integer>
+	<integer>25079</integer>
 	<key>2_app</key>
-	<string>md.obsidian</string>
+	<string>com.microsoft.VSCode</string>
 	<key>2_id</key>
-	<integer>74</integer>
+	<integer>25288</integer>
 	<key>3_app</key>
 	<string>md.obsidian</string>
 	<key>3_id</key>
