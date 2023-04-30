@@ -1,39 +1,20 @@
+require("lib.print_utils")
 -- https://www.hammerspoon.org/docs/hs.window.html#find
 -- 启用 Spotlight 支持
-
 hs.application.enableSpotlightForNameSearches(true)
 
 local windows_preferences_path = "/Users/apple/.hammerspoon/window_config.plist"
 Windows_preferences = hs.plist.read(windows_preferences_path)
 BindFlag = false; -- 是否开启 bind flag
-
-local function _debug() hs.alert.show("debug demo") end
 local function keyStroke(modifiers, character)
-  local event = hs.eventtap.event.newKeyEvent(modifiers, string.lower(character), true)
-  event.post(event)
+    local event = hs.eventtap.event.newKeyEvent(modifiers,
+        string.lower(character), true)
+    event.post(event)
 end
+PrintTable(Windows_preferences)
+
 
 -- keyStroke({}, "A") -- 模拟按下并释放 A 键
-
--- DEBUG 代码
-DEBUG = false; -- 是否开启 bind flag
-local debugHokey = nil;
-local function toggleDebug()
-    DEBUG = not DEBUG
-    if DEBUG then
-        hs.alert.show("debug mode on")
-        debugHokey =
-            hs.hotkey.new({"cmd"}, "F12", function() _debug() end):enable()
-    else
-        hs.alert.show("debug mode off")
-        if debugHokey ~= nil then debugHokey:disable() end
-    end
-end
-
-local function printTable(tbl)
-    for k, v in pairs(tbl) do print(k .. ": " .. tostring(v)) end
-end
-
 local function activateWindow(idx)
     local appId = Windows_preferences[idx .. "_app"]
     local winId = Windows_preferences[idx .. "_id"]
@@ -44,13 +25,13 @@ local function activateWindow(idx)
 
     local curWin = hs.window.focusedWindow()
     if curWin:id() == winId then
-        keyStroke({"cmd"},"H")
+        keyStroke({"cmd"}, "H")
         return
     end
     -- 获取应用程序对象
     local apps = hs.application.applicationsForBundleID(appId)
     if #apps ~= 1 then
-        if #apps >1 then
+        if #apps > 1 then
             hs.alert.show("apps is multi")
         else
             hs.alert.show("apps is not running")
@@ -112,7 +93,7 @@ local function updateWindowsPrefFromFrontmostWindow(idx)
             hs.plist.write(windows_preferences_path, Windows_preferences)
 
             -- 打印更新后的 windows_preferences 变量
-            printTable(Windows_preferences)
+            PrintTable(Windows_preferences)
         else
             hs.alert.show("No focused window found")
         end
@@ -129,7 +110,6 @@ hs.hotkey.bind({"cmd", "alt", "shift", "ctrl"}, "0", function()
     else
         hs.alert.show("exit bind mode")
     end
-    -- toggleDebug()
 end)
 
 for i = 1, 9 do
@@ -186,3 +166,26 @@ end)
 --   fillColor = { white = 0, alpha = 0.8 },
 --   textColor = { red = 1 }
 -- })
+
+-- -- 更新鼠标位置显示文本
+-- function updateMousePosition()
+--     -- 创建鼠标位置显示文本
+--     local mouseText = hs.drawing.text(hs.geometry.point(100, 100), "")
+--     mouseText:setTextColor({red = 1, blue = 0, green = 0, alpha = 1})
+--     mouseText:setTextSize(20)
+--     local mousePoint = hs.mouse:absolutePosition()
+--     mouseText:setString("(" .. mousePoint.x .. ", " .. mousePoint.y .. ")")
+--     mouseText:show()
+-- end
+
+
+-- -- -- 监控鼠标位置变化
+-- -- hs.timer.doEvery(1, showMousePosition)
+
+-- -- hs.timer.doEvery(1, function() print("fuck") end)
+
+-- local function _debug()
+--     hs.alert.show("debug demo")
+--     hs.timer.doEvery(1, updateMousePosition)
+-- end
+-- hs.hotkey.new({"cmd"}, "F12", function() _debug() end):enable()

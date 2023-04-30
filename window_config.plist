@@ -3,13 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>1_app</key>
-	<string>com.microsoft.edgemac</string>
+	<string>org.hammerspoon.Hammerspoon</string>
 	<key>1_id</key>
-	<integer>18129</integer>
+	<integer>14876</integer>
 	<key>2_app</key>
 	<string>com.microsoft.VSCode</string>
 	<key>2_id</key>
-	<integer>20659</integer>
+	<integer>21957</integer>
 	<key>3_app</key>
 	<string>md.obsidian</string>
 	<key>3_id</key>
