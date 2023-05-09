@@ -11,8 +11,11 @@ function ActivateWindow(idx)
     end
 
     local curWin = hs.window.focusedWindow()
-    if curWin:id() == winId then
-        keyStroke({"cmd"}, "H")
+    if curWin ~= nil and curWin:id() == winId then
+        curWin:application():hide()
+        -- curWin:sendToBack() -- 特效太多
+        -- keyStroke({"cmd"}, "tab")
+        -- curWin:minimize()
         return
     end
     -- 获取应用程序对象
@@ -54,7 +57,7 @@ function ActivateWindow(idx)
     end)
 end
 
- function UpdateWindowsPrefFromFrontmostWindow(idx)
+function UpdateWindowsPrefFromFrontmostWindow(idx)
     -- 获取当前位于前台的应用程序对象
     local frontmostApp = hs.application.frontmostApplication()
 
@@ -87,4 +90,11 @@ end
     else
         hs.alert.show("No frontmost application found")
     end
+end
+
+function SmartCloseWindow()
+    local frontmostApp = hs.application.frontmostApplication()
+    local frontmosWin = frontmostApp:focusedWindow()
+    if frontmosWin == nil then return end
+    frontmosWin:close()
 end

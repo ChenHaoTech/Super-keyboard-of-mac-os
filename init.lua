@@ -7,7 +7,6 @@ require("lib.window_utils")
 -- 启用 Spotlight 支持
 hs.application.enableSpotlightForNameSearches(true)
 
-
 -- toggle 
 hs.hotkey.bind({"cmd", "alt", "shift", "ctrl"}, "0", function()
     BindFlag = not BindFlag
@@ -28,6 +27,17 @@ for i = 1, 9 do
         BindFlag = false;
     end)
 end
+for i = 1, 12 do
+    local key = "f" .. tostring(i)
+    hs.hotkey.bind({"cmd", "alt", "shift", "ctrl"}, key, function()
+        if BindFlag then
+            UpdateWindowsPrefFromFrontmostWindow(key)
+        else
+            ActivateWindow(key)
+        end
+        BindFlag = false;
+    end)
+end
 
 -- reload
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
@@ -35,6 +45,9 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
     hs.openConsole()
     hs.reload()
 end)
+
+hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "Q",
+               function() SmartCloseWindow() end)
 
 require("lib.alert_utls")
 require("lib.mouse_utils")

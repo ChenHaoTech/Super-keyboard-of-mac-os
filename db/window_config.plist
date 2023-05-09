@@ -5,19 +5,19 @@
 	<key>1_app</key>
 	<string>com.microsoft.edgemac</string>
 	<key>1_id</key>
-	<integer>209</integer>
+	<integer>16617</integer>
 	<key>2_app</key>
-	<string>QReader.MarginStudyMac</string>
+	<string>com.jetbrains.rider</string>
 	<key>2_id</key>
-	<integer>53</integer>
+	<integer>15260</integer>
 	<key>3_app</key>
 	<string>md.obsidian</string>
 	<key>3_id</key>
-	<integer>56</integer>
+	<integer>11544</integer>
 	<key>4_app</key>
-	<integer>94977</integer>
+	<string>com.figma.Desktop</string>
 	<key>4_id</key>
-	<integer>18073</integer>
+	<integer>2866</integer>
 	<key>5_app</key>
 	<integer>84320</integer>
 	<key>5_id</key>
@@ -26,5 +26,9 @@
 	<string>com.microsoft.edgemac.app.gabodgbmieebkjkpdlfnnfbjldgadkpg</string>
 	<key>9_id</key>
 	<integer>20646</integer>
+	<key>f1_app</key>
+	<string>com.microsoft.edgemac.app.gabodgbmieebkjkpdlfnnfbjldgadkpg</string>
+	<key>f1_id</key>
+	<integer>17966</integer>
 </dict>
 </plist>
