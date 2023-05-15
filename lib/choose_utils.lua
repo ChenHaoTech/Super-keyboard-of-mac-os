@@ -1,25 +1,25 @@
-chooser = hs.chooser.new(function(choice)
-    if choice then
-        print("用户选择了：" .. choice.text)
-        win = hs.window.get(choice.id)
-        if (win ~= nil) then win:focus() end
-    end
-end)
+-- chooser = hs.chooser.new(function(choice)
+--     if choice then
+--         print("用户选择了：" .. choice.text)
+--         win = hs.window.get(choice.id)
+--         if (win ~= nil) then win:focus() end
+--     end
+-- end)
 
-chooser:placeholderText("请输入一些文本")
+-- chooser:placeholderText("请输入一些文本")
 
-local choices = {}
-for i, win in ipairs(hs.window.allWindows()) do
-    if win:title() == "" then
-        print("win:title() is nil")
-        goto continue
-    end
-    table.insert(choices, {text = win:title(), id = win:id()})
-    ::continue::
-end
-chooser:choices(choices)
+-- local choices = {}
+-- for i, win in ipairs(hs.window.allWindows()) do
+--     if win:title() == "" then
+--         print("win:title() is nil")
+--         goto continue
+--     end
+--     table.insert(choices, {text = win:title(), id = win:id()})
+--     ::continue::
+-- end
+-- chooser:choices(choices)
 
--- chooser:show()
+-- -- chooser:show()
 
 -- hs.window.allWindows()
 

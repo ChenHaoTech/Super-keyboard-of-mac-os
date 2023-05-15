@@ -6,7 +6,7 @@ WindowDict = {}
 -- 获取所有应用程序对象
 -- local apps = hs.application.runningApplications()
 
--- 遍历所有应用程序对象
+-- 遍历所有应用程序对象timer.secondsSinceEpoch()
 -- for i, app in ipairs(apps) do
 --     local windows = app:allWindows()
 --     -- 遍历应用程序的所有窗口
@@ -126,11 +126,13 @@ function ActivateWindow(idx)
                 if (win ~= nil) then
                     win:focus()
                     Windows_preferences[idx .. "_id"] = win:id()
-
                 else
                     app:activate()
-                    Windows_preferences[idx .. "_id"] = app:focusedWindow():id()
+                    win = app:focusedWindow():id();
+                    Windows_preferences[idx .. "_id"] = win;
                 end
+                WindowDict[app:name()][winId] = win;
+                return
             end
         else
             hs.alert.show("Application not found: " .. appId)
