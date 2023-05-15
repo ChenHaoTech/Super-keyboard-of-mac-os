@@ -5,8 +5,9 @@ function PrintTable(tbl)
         print("table is nil")
         return
     end
-    local str = json.encode(tbl)
-    print(str)
+    -- local str = json.encode(tbl)
+    -- print(str)
+    for k, v in pairs(tbl) do print(tostring(k) .. ": " .. tostring(v)) end
 end
 
 function pt(tbl) PrintTable(tbl) end

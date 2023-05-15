@@ -1,6 +1,40 @@
 require("lib.keystore")
 require("lib.data")
 
+WindowDict = {}
+
+-- 获取所有应用程序对象
+-- local apps = hs.application.runningApplications()
+
+-- 遍历所有应用程序对象
+-- for i, app in ipairs(apps) do
+--     local windows = app:allWindows()
+--     -- 遍历应用程序的所有窗口
+--     for j, win in ipairs(windows) do
+--         local winId = win:id()
+--         -- 将窗口对象和窗口 ID 存入字典
+--         WindowDict[app] = WindowDict[app] or {}
+--         WindowDict[app][winId] = win
+--     end
+-- end
+
+-- 要想生效, 不能走 local, local 要审慎
+function ApplicationActiveWatcherFunc(appName, eventType, appObject)
+    -- hs.alert.show(
+    --     string.format("hahaa, %s,%s,%s", appName, eventType, appObject))
+    if (eventType ~= hs.application.watcher.launched or eventType ~=
+        hs.application.watcher.terminated) then return end
+    for k, win in pairs(appObject:allWindows()) do
+        local winId = win:id()
+        WindowDict[appObject:path()] = WindowDict[appObject:path()] or {}
+        WindowDict[appObject:path()][winId] = win
+    end
+
+end
+AppWindowActiveWatcher = hs.application.watcher
+                             .new(ApplicationActiveWatcherFunc)
+AppWindowActiveWatcher:start()
+
 function RecordFuncInvoke(func, key, needRecord)
     if needRecord ~= nil and needRecord == false then return func() end
     local timer = require("hs.timer")
@@ -17,7 +51,10 @@ function RecordFuncInvoke(func, key, needRecord)
     local duration = endT - startT
 
     -- 打印 API 调用的时间
-    print(key .. "API 调用的时间为：" .. duration*1000 .. " 毫秒")
+    duration = duration * 1000;
+    if duration >= 10 then
+        print(key .. "API 调用的时间为：" .. duration .. " 毫秒")
+    end
     return res;
 end
 
@@ -56,16 +93,24 @@ function ActivateWindow(idx)
     hs.fnutils.each(apps, function(app)
         -- 如果找到了应用程序对象，获取窗口对象
         if app ~= nil then
-            local allWindow = RecordFuncInvoke(function()
-                return app:allWindows()
+            local allWindow = WindowDict[app:path()] or RecordFuncInvoke(function()
+                print("get all window snc, app" .. app:name())
+                local res  = {}
+                for index, value in ipairs(app:allWindows()) do
+                   res[value:id()] = value; 
+                end
+                return res;
             end, "get all windows")
-            local win = hs.fnutils.find(allWindow, function(win)
-                return win:id() == winId
-            end)
+            -- pt(WindowDict[app:path()])
+            -- pt(allWindow)
+            WindowDict[app:path()] = allWindow
+            -- pt(WindowDict[app:path()])
+            local win = WindowDict[app:path()][winId]
             -- 如果找到了窗口对象，激活窗口；否则提示未找到窗口对象
             if win ~= nil then
                 -- win:becomeMain()
                 win:focus()
+                return
             else
                 hs.alert.show("Window not found for title: " .. winId ..
                                   ",acitve app" .. app:name())
