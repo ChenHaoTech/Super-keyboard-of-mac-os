@@ -1,37 +1,65 @@
 require("lib.keystore")
 require("lib.data")
 
+function RecordFuncInvoke(func, key, needRecord)
+    if needRecord ~= nil and needRecord == false then return func() end
+    local timer = require("hs.timer")
+
+    -- 开始计时
+    local startT = timer.secondsSinceEpoch()
+
+    -- 执行 API 请求
+    local res = func();
+    -- 结束计时
+    local endT = timer.secondsSinceEpoch()
+
+    -- 计算 API 调用的时间
+    local duration = endT - startT
+
+    -- 打印 API 调用的时间
+    print(key .. "API 调用的时间为：" .. duration*1000 .. " 毫秒")
+    return res;
+end
+
 -- keyStroke({}, "A") -- 模拟按下并释放 A 键
 function ActivateWindow(idx)
+    print("===> begin ")
     local appId = Windows_preferences[idx .. "_app"]
     local winId = Windows_preferences[idx .. "_id"]
     if appId == nil or winId == nil then
         hs.alert.show("No record for idx: " .. idx)
         return
     end
-
-    local curWin = hs.window.focusedWindow()
-    if curWin ~= nil and curWin:id() == winId then
-        curWin:application():hide()
-        -- curWin:sendToBack() -- 特效太多
-        -- keyStroke({"cmd"}, "tab")
-        -- curWin:minimize()
-        return
-    end
+    --  hs.window.focusedWindow()  性能比较查, 先关掉
+    -- local curWin = RecordFuncInvoke(function() hs.window.focusedWindow() end,
+    --                                 "get focused window")
+    -- if curWin ~= nil and curWin:id() == winId then
+    --     curWin:application():hide()
+    --     -- curWin:sendToBack() -- 特效太多
+    --     -- keyStroke({"cmd"}, "tab")
+    --     -- curWin:minimize()
+    --     return
+    -- end
     -- 获取应用程序对象
-    local apps = hs.application.applicationsForBundleID(appId)
+    local apps = RecordFuncInvoke(function()
+        return hs.application.applicationsForBundleID(appId)
+    end, "get app by bundle id")
+
     if #apps ~= 1 then
         if #apps > 1 then
             hs.alert.show("apps is multi")
         else
             hs.alert.show("apps is not running")
         end
-        return
+        -- return
     end
     hs.fnutils.each(apps, function(app)
         -- 如果找到了应用程序对象，获取窗口对象
         if app ~= nil then
-            local win = hs.fnutils.find(app:allWindows(), function(win)
+            local allWindow = RecordFuncInvoke(function()
+                return app:allWindows()
+            end, "get all windows")
+            local win = hs.fnutils.find(allWindow, function(win)
                 return win:id() == winId
             end)
             -- 如果找到了窗口对象，激活窗口；否则提示未找到窗口对象

@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>1_app</key>
-	<string>com.microsoft.edgemac</string>
+	<string>org.hammerspoon.Hammerspoon</string>
 	<key>1_id</key>
-	<integer>16617</integer>
+	<integer>9974</integer>
 	<key>2_app</key>
 	<string>com.jetbrains.rider</string>
 	<key>2_id</key>
-	<integer>15260</integer>
+	<integer>9054</integer>
 	<key>3_app</key>
-	<string>md.obsidian</string>
+	<string>com.unity3d.UnityEditor5.x</string>
 	<key>3_id</key>
-	<integer>11544</integer>
+	<integer>9072</integer>
 	<key>4_app</key>
 	<string>com.figma.Desktop</string>
 	<key>4_id</key>
-	<integer>2866</integer>
+	<integer>366</integer>
 	<key>5_app</key>
 	<integer>84320</integer>
 	<key>5_id</key>
@@ -30,5 +30,13 @@
 	<string>com.microsoft.edgemac.app.gabodgbmieebkjkpdlfnnfbjldgadkpg</string>
 	<key>f1_id</key>
 	<integer>17966</integer>
+	<key>f2_app</key>
+	<string>com.microsoft.edgemac.app.mcpmngknmbggcjflkgnpejimnpdcbnin</string>
+	<key>f2_id</key>
+	<integer>163</integer>
+	<key>f3_app</key>
+	<string>com.microsoft.edgemac.app.pfglbpdbchikinhomjlnbkcflnjchemg</string>
+	<key>f3_id</key>
+	<integer>9124</integer>
 </dict>
 </plist>
