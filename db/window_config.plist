@@ -6,10 +6,12 @@
 	<string>com.microsoft.edgemac</string>
 	<key>1_id</key>
 	<integer>53</integer>
+	<key>1_path</key>
+	<string>/Applications/Microsoft Edge.app</string>
 	<key>2_app</key>
-	<string>com.microsoft.VSCode</string>
+	<string>com.unity3d.UnityEditor5.x</string>
 	<key>2_id</key>
-	<integer>9946</integer>
+	<integer>9072</integer>
 	<key>3_app</key>
 	<string>org.hammerspoon.Hammerspoon</string>
 	<key>3_id</key>

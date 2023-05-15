@@ -63,6 +63,7 @@ function ActivateWindow(idx)
     print("===> begin ")
     local appId = Windows_preferences[idx .. "_app"]
     local winId = Windows_preferences[idx .. "_id"]
+    local path = Windows_preferences[idx .. "_path"]
     if appId == nil or winId == nil then
         hs.alert.show("No record for idx: " .. idx)
         return
@@ -78,13 +79,19 @@ function ActivateWindow(idx)
     --     return
     -- end
     -- 获取应用程序对象
+    local win = (WindowDict[path] or {})[winId]
+    if (win ~= nil) then
+        print("hint cache path" .. path .. "win" .. win:title())
+        win:focus()
+        return
+    end
     local apps = RecordFuncInvoke(function()
         return hs.application.applicationsForBundleID(appId)
     end, "get app by bundle id")
 
     if #apps ~= 1 then
         if #apps > 1 then
-            hs.alert.show("apps is multi")
+            -- hs.alert.show("apps is multi")
         else
             hs.alert.show("apps is not running")
         end
@@ -93,14 +100,15 @@ function ActivateWindow(idx)
     hs.fnutils.each(apps, function(app)
         -- 如果找到了应用程序对象，获取窗口对象
         if app ~= nil then
-            local allWindow = WindowDict[app:path()] or RecordFuncInvoke(function()
-                print("get all window snc, app" .. app:name())
-                local res  = {}
-                for index, value in ipairs(app:allWindows()) do
-                   res[value:id()] = value; 
-                end
-                return res;
-            end, "get all windows")
+            local allWindow = WindowDict[app:path()] or
+                                  RecordFuncInvoke(function()
+                    print("get all window snc, app" .. app:name())
+                    local res = {}
+                    for index, value in ipairs(app:allWindows()) do
+                        res[value:id()] = value;
+                    end
+                    return res;
+                end, "get all windows")
             -- pt(WindowDict[app:path()])
             -- pt(allWindow)
             WindowDict[app:path()] = allWindow
@@ -148,6 +156,7 @@ function UpdateWindowsPrefFromFrontmostWindow(idx)
             -- 更新 windows_preferences 变量
             Windows_preferences[idx .. "_app"] = appId
             Windows_preferences[idx .. "_id"] = wid
+            Windows_preferences[idx .. "_path"] = frontmostApp:path()
 
             -- 在弹窗中显示窗口标题，并将更新后的 windows_preferences 变量写入文件
             hs.alert.show(string.format("record Window,id:%s\napp:%s,title:%s",
