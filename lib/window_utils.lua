@@ -128,8 +128,8 @@ function ActivateWindow(idx)
                     Windows_preferences[idx .. "_id"] = win:id()
                 else
                     app:activate()
-                    win = app:focusedWindow():id();
-                    Windows_preferences[idx .. "_id"] = win;
+                    win = app:focusedWindow()
+                    Windows_preferences[idx .. "_id"] = win:id();
                 end
                 WindowDict[app:name()][winId] = win;
                 return

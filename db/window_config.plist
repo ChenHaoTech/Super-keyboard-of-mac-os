@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>1_app</key>
-	<string>com.microsoft.VSCode</string>
+	<string>com.microsoft.edgemac</string>
 	<key>1_id</key>
-	<integer>12102</integer>
+	<integer>14922</integer>
 	<key>1_path</key>
-	<string>/Applications/Visual Studio Code.app</string>
+	<string>/Applications/Microsoft Edge.app</string>
 	<key>2_app</key>
 	<string>com.jetbrains.rider</string>
 	<key>2_id</key>
