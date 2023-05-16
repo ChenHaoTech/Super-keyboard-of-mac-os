@@ -11,7 +11,7 @@
 	<key>2_app</key>
 	<string>com.jetbrains.rider</string>
 	<key>2_id</key>
-	<integer>9054</integer>
+	<integer>15493</integer>
 	<key>2_path</key>
 	<string>/Applications/Rider.app</string>
 	<key>3_app</key>
@@ -41,10 +41,10 @@
 	<key>f2_app</key>
 	<string>com.microsoft.edgemac.app.mcpmngknmbggcjflkgnpejimnpdcbnin</string>
 	<key>f2_id</key>
-	<integer>163</integer>
+	<integer>14924</integer>
 	<key>f3_app</key>
 	<string>com.microsoft.edgemac.app.pfglbpdbchikinhomjlnbkcflnjchemg</string>
 	<key>f3_id</key>
-	<integer>9124</integer>
+	<integer>14923</integer>
 </dict>
 </plist>
