@@ -30,7 +30,7 @@ for i = 1, 9 do
         else
             ActivateWindow(i)
         end
-    end, function() hs.alert.show("repeat") end)
+    end)
 end
 for i = 1, 12 do
     local key = "f" .. tostring(i)
