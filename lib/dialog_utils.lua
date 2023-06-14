@@ -13,4 +13,7 @@ local result, files = hs.dialog.chooseFileOrFolder("请选择文件或文件夹"
 if result == "OK" then
     print(files[1])
 end
+
+local alert = hs.dialog.blockAlert("Title", "Message", "Button 1", "Button 2")
+print(alert) -- 打印用户点击的按钮的索引
  ]]

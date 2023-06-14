@@ -48,7 +48,7 @@ for i = 1, 12 do
             ActivateWindow(key)
         end
     end,function ( )
-        UpdateWindowsPrefFromFrontmostWindow(i)
+        UpdateWindowsPrefFromFrontmostWindow(key)
     end)
 end
 

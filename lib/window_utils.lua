@@ -93,7 +93,10 @@ function ActivateWindow(idx)
         if #apps > 1 then
             -- hs.alert.show("apps is multi")
         else
-            hs.alert.show("apps is not running")
+            local alert = hs.dialog.blockAlert("LAUCH", "launch"..path, "LAUNCH", "CANCEL")
+            if alert == "LAUNCH" then
+                hs.application.launchOrFocusByBundleID(appId)
+            end
         end
         -- return
     end
