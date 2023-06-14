@@ -25,14 +25,14 @@ for i = 1, 9 do
     end, function()
         local last = BindFlagMap[key]
         local now = hs.timer.secondsSinceEpoch();
-        if now - last > 0.5 then -- 过长的按住, 直接忽略
-            -- UpdateWindowsPrefFromFrontmostWindow(i)
+        if now - last > 0.2 then -- 过长的按住, 直接忽略
+            UpdateWindowsPrefFromFrontmostWindow(i)
         else
             ActivateWindow(i)
         end
     end,function ()
-        -- hs.alert.show("repeat")
-        UpdateWindowsPrefFromFrontmostWindow(i)
+        hs.alert.show("repeat")
+        -- UpdateWindowsPrefFromFrontmostWindow(i)
     end)
 end
 for i = 1, 12 do
@@ -42,13 +42,14 @@ for i = 1, 12 do
     end, function()
         local last = BindFlagMap[key]
         local now = hs.timer.secondsSinceEpoch();
-        if now - last > 0.5 then  -- 过长的按住, 直接忽略
-            -- UpdateWindowsPrefFromFrontmostWindow(key)
+        if now - last > 0.2 then  -- 过长的按住, 直接忽略
+            UpdateWindowsPrefFromFrontmostWindow(key)
         else
             ActivateWindow(key)
         end
     end,function ( )
-        UpdateWindowsPrefFromFrontmostWindow(key)
+        -- UpdateWindowsPrefFromFrontmostWindow(key)
+        hs.alert.show("repeat")
     end)
 end
 
