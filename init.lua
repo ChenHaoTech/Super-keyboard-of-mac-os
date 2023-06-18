@@ -85,3 +85,6 @@ RecordFuncInvoke(function()
     require("lib.time_utils")
     require("lib.window_watch")
 end, "load extension")
+
+-- testCallbackFn = function(result) print("Callback Result: " .. result) end
+-- hs.dialog.alert(0,0, testCallbackFn, "Message", "Informative Text", "Button One", "Button Two", "NSCriticalAlertStyle")

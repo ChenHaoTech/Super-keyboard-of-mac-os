@@ -31,8 +31,7 @@ function ApplicationActiveWatcherFunc(appName, eventType, appObject)
     end
 
 end
-OnXXApplicationWatch = hs.application.watcher
-                             .new(ApplicationActiveWatcherFunc)
+OnXXApplicationWatch = hs.application.watcher.new(ApplicationActiveWatcherFunc)
 OnXXApplicationWatch:start()
 
 function RecordFuncInvoke(func, key, needRecord)
