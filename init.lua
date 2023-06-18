@@ -25,7 +25,7 @@ for i = 1, 9 do
     end, function()
         local last = BindFlagMap[key]
         local now = hs.timer.secondsSinceEpoch();
-        if now - last > 0.2 then -- 过长的按住, 直接忽略
+        if now - last > 0.4 then -- 过长的按住, 直接忽略
             UpdateWindowsPrefFromFrontmostWindow(i)
         else
             ActivateWindow(i)
@@ -42,7 +42,7 @@ for i = 1, 12 do
     end, function()
         local last = BindFlagMap[key]
         local now = hs.timer.secondsSinceEpoch();
-        if now - last > 0.2 then  -- 过长的按住, 直接忽略
+        if now - last > 0.4 then  -- 过长的按住, 直接忽略
             UpdateWindowsPrefFromFrontmostWindow(key)
         else
             ActivateWindow(key)
@@ -83,4 +83,5 @@ RecordFuncInvoke(function()
     require("lib.eventtap_utils")
     require("lib.host_utils")
     require("lib.time_utils")
+    require("lib.window_watch")
 end, "load extension")

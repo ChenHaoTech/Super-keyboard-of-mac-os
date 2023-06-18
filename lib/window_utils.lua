@@ -31,9 +31,9 @@ function ApplicationActiveWatcherFunc(appName, eventType, appObject)
     end
 
 end
-AppWindowActiveWatcher = hs.application.watcher
+OnXXApplicationWatch = hs.application.watcher
                              .new(ApplicationActiveWatcherFunc)
-AppWindowActiveWatcher:start()
+OnXXApplicationWatch:start()
 
 function RecordFuncInvoke(func, key, needRecord)
     if needRecord ~= nil and needRecord == false then return func() end
