@@ -5,31 +5,33 @@
 	<key>1_app</key>
 	<string>com.microsoft.edgemac</string>
 	<key>1_id</key>
-	<integer>85</integer>
+	<integer>7823</integer>
 	<key>1_path</key>
 	<string>/Applications/Microsoft Edge.app</string>
 	<key>2_app</key>
-	<string>com.jetbrains.rider</string>
+	<string>com.microsoft.VSCode</string>
 	<key>2_id</key>
-	<integer>106</integer>
+	<integer>10072</integer>
 	<key>2_path</key>
-	<string>/Applications/Rider.app</string>
+	<string>/Applications/Visual Studio Code.app</string>
 	<key>3_app</key>
 	<string>md.obsidian</string>
 	<key>3_id</key>
-	<integer>3427</integer>
+	<integer>10395</integer>
 	<key>3_path</key>
 	<string>/Applications/Obsidian.app</string>
 	<key>4_app</key>
-	<string>com.figma.Desktop</string>
+	<string>com.apple.finder</string>
 	<key>4_id</key>
-	<integer>71</integer>
+	<integer>8846</integer>
 	<key>4_path</key>
-	<string>/Applications/Figma.app</string>
+	<string>/System/Library/CoreServices/Finder.app</string>
 	<key>5_app</key>
-	<integer>84320</integer>
+	<string>com.apple.finder</string>
 	<key>5_id</key>
-	<integer>16264</integer>
+	<integer>8846</integer>
+	<key>5_path</key>
+	<string>/System/Library/CoreServices/Finder.app</string>
 	<key>9_app</key>
 	<string>com.netease.macmail</string>
 	<key>9_id</key>
@@ -39,20 +41,26 @@
 	<key>f1_app</key>
 	<string>xyz.chatboxapp.app</string>
 	<key>f1_id</key>
-	<integer>29</integer>
+	<integer>60</integer>
 	<key>f1_path</key>
 	<string>/Applications/chatbox.app</string>
 	<key>f2_app</key>
 	<string>com.microsoft.edgemac.app.mcpmngknmbggcjflkgnpejimnpdcbnin</string>
 	<key>f2_id</key>
-	<integer>119</integer>
+	<integer>3025</integer>
 	<key>f2_path</key>
 	<string>/Users/apple/Applications/Edge Apps.localized/work space.app</string>
 	<key>f3_app</key>
 	<string>com.microsoft.edgemac.app.pfglbpdbchikinhomjlnbkcflnjchemg</string>
 	<key>f3_id</key>
-	<integer>117</integer>
+	<integer>3026</integer>
 	<key>f3_path</key>
 	<string>/Users/apple/Applications/Edge Apps.localized/⁤⁤‌⁢⁡​⁢⁢​⁢⁡⁣⁣​​⁡​​⁡⁤﻿﻿⁤⁢⁢⁢​‍‌‍‍‍⁡⁡⁢﻿⁡⁢﻿⁢​⁢﻿​⁢‬⁣⁤⁢Bug List汇总.app</string>
+	<key>f4_app</key>
+	<string>org.hammerspoon.Hammerspoon</string>
+	<key>f4_id</key>
+	<integer>315</integer>
+	<key>f4_path</key>
+	<string>/Applications/Hammerspoon.app</string>
 </dict>
 </plist>

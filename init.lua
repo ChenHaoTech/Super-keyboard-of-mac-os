@@ -84,6 +84,7 @@ RecordFuncInvoke(function()
     require("lib.host_utils")
     require("lib.time_utils")
     require("lib.window_watch")
+    require("lib.task_utils")
 end, "load extension")
 
 -- testCallbackFn = function(result) print("Callback Result: " .. result) end

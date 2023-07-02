@@ -22,14 +22,17 @@ WindowDict = {}
 function ApplicationActiveWatcherFunc(appName, eventType, appObject)
     -- hs.alert.show(
     --     string.format("hahaa, %s,%s,%s", appName, eventType, appObject))
-    if (eventType ~= hs.application.watcher.launched or eventType ~=
-        hs.application.watcher.terminated) then return end
-    for k, win in pairs(appObject:allWindows()) do
-        local winId = win:id()
-        WindowDict[appObject:path()] = WindowDict[appObject:path()] or {}
-        WindowDict[appObject:path()][winId] = win
+    if (eventType == 1) then
+        for k, win in pairs(appObject:allWindows()) do
+            local winId = win:id()
+            WindowDict[appObject:path()] = WindowDict[appObject:path()] or {}
+            WindowDict[appObject:path()][winId] = win
+        end
     end
-
+    if (eventType == 2) then
+        print("app terminated" .. appObject:path());
+        WindowDict[appObject:path()] = nil
+    end
 end
 OnXXApplicationWatch = hs.application.watcher.new(ApplicationActiveWatcherFunc)
 OnXXApplicationWatch:start()
@@ -59,7 +62,7 @@ end
 
 -- keyStroke({}, "A") -- 模拟按下并释放 A 键
 function ActivateWindow(idx)
-    print("===> begin ")
+    print("===> begin,active: " .. idx)
     local appId = Windows_preferences[idx .. "_app"]
     local winId = Windows_preferences[idx .. "_id"]
     local path = Windows_preferences[idx .. "_path"]
@@ -77,11 +80,17 @@ function ActivateWindow(idx)
     --     -- curWin:minimize()
     --     return
     -- end
+
+    -- 开始激活的时间
+    local timer = require("hs.timer")
+    local beginT = timer.secondsSinceEpoch()
     -- 获取应用程序对象
     local win = (WindowDict[path] or {})[winId]
-    if (win ~= nil) then
+    -- win 存活的情况下才执行
+    if win ~= nil and win:application() ~= nil then
         print("hint cache path" .. path .. "win" .. win:title())
         win:focus()
+        print("hint cache path" .. path .. "win active success" .. win:title())
         return
     end
     local apps = RecordFuncInvoke(function()
@@ -92,7 +101,8 @@ function ActivateWindow(idx)
         if #apps > 1 then
             -- hs.alert.show("apps is multi")
         else
-            local alert = hs.dialog.blockAlert("LAUCH", "launch"..path, "LAUNCH", "CANCEL")
+            local alert = hs.dialog.blockAlert("LAUCH", "launch" .. path,
+                                               "LAUNCH", "CANCEL")
             if alert == "LAUNCH" then
                 hs.application.launchOrFocusByBundleID(appId)
             end
@@ -120,6 +130,11 @@ function ActivateWindow(idx)
             if win ~= nil then
                 -- win:becomeMain()
                 win:focus()
+                local endT = timer.secondsSinceEpoch()
+                if (endT - beginT >= 0.5) then
+                    hs.alert.alert(
+                        "cost too match time,ms:" .. (endT - beginT) * 1000);
+                end
                 return
             else
                 hs.alert.show("Window not found for title: " .. winId ..
@@ -132,6 +147,11 @@ function ActivateWindow(idx)
                     app:activate()
                     win = app:focusedWindow()
                     Windows_preferences[idx .. "_id"] = win:id();
+                    local endT = timer.secondsSinceEpoch()
+                    if (endT - beginT >= 0.5) then
+                        hs.alert.alert("cost too match time,ms:" ..
+                                           (endT - beginT) * 1000);
+                    end
                 end
                 WindowDict[app:path()][winId] = win;
                 return
