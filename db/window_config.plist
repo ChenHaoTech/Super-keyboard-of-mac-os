@@ -5,27 +5,27 @@
 	<key>1_app</key>
 	<string>com.microsoft.edgemac</string>
 	<key>1_id</key>
-	<integer>7823</integer>
+	<integer>323</integer>
 	<key>1_path</key>
 	<string>/Applications/Microsoft Edge.app</string>
 	<key>2_app</key>
-	<string>com.microsoft.VSCode</string>
+	<string>com.jetbrains.rider</string>
 	<key>2_id</key>
-	<integer>10072</integer>
+	<integer>3479</integer>
 	<key>2_path</key>
-	<string>/Applications/Visual Studio Code.app</string>
+	<string>/Applications/Rider.app</string>
 	<key>3_app</key>
 	<string>md.obsidian</string>
 	<key>3_id</key>
-	<integer>10395</integer>
+	<integer>2836</integer>
 	<key>3_path</key>
 	<string>/Applications/Obsidian.app</string>
 	<key>4_app</key>
-	<string>com.apple.finder</string>
+	<string>com.example.flutter3AppDemo</string>
 	<key>4_id</key>
-	<integer>8846</integer>
+	<integer>9783</integer>
 	<key>4_path</key>
-	<string>/System/Library/CoreServices/Finder.app</string>
+	<string>/Users/apple/Work/personal/flutter3_app_demo/build/macos/Build/Products/Debug/flutter3_app_demo.app</string>
 	<key>5_app</key>
 	<string>com.apple.finder</string>
 	<key>5_id</key>
@@ -41,19 +41,19 @@
 	<key>f1_app</key>
 	<string>xyz.chatboxapp.app</string>
 	<key>f1_id</key>
-	<integer>60</integer>
+	<integer>2022</integer>
 	<key>f1_path</key>
 	<string>/Applications/chatbox.app</string>
 	<key>f2_app</key>
 	<string>com.microsoft.edgemac.app.mcpmngknmbggcjflkgnpejimnpdcbnin</string>
 	<key>f2_id</key>
-	<integer>3025</integer>
+	<integer>319</integer>
 	<key>f2_path</key>
 	<string>/Users/apple/Applications/Edge Apps.localized/work space.app</string>
 	<key>f3_app</key>
 	<string>com.microsoft.edgemac.app.pfglbpdbchikinhomjlnbkcflnjchemg</string>
 	<key>f3_id</key>
-	<integer>3026</integer>
+	<integer>306</integer>
 	<key>f3_path</key>
 	<string>/Users/apple/Applications/Edge Apps.localized/⁤⁤‌⁢⁡​⁢⁢​⁢⁡⁣⁣​​⁡​​⁡⁤﻿﻿⁤⁢⁢⁢​‍‌‍‍‍⁡⁡⁢﻿⁡⁢﻿⁢​⁢﻿​⁢‬⁣⁤⁢Bug List汇总.app</string>
 	<key>f4_app</key>

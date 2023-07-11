@@ -1,4 +1,4 @@
---[[ 
+--[[
 typedef enum _event_t {
     launching = 0,
     launched,//1
@@ -8,13 +8,20 @@ typedef enum _event_t {
     activated //5,
     deactivated//6
 
- ]]
+--  ]]
+
+spec_hot_config = {}
+
+
 
 AppNameActievSwitcher = {
     ["Google Chrome"] = function(eventType, appObject)
         print("Chrome active" .. eventType .. "," .. appObject)
     end,
     ["Obsidian"] = function(eventType, appObject)
+        if eventType == 1 then
+            print("launching")
+        end
         -- active
         if eventType == 5 then print("active") end
         -- active
