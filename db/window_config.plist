@@ -5,19 +5,19 @@
 	<key>1_app</key>
 	<string>com.microsoft.edgemac</string>
 	<key>1_id</key>
-	<integer>323</integer>
+	<integer>80</integer>
 	<key>1_path</key>
 	<string>/Applications/Microsoft Edge.app</string>
 	<key>2_app</key>
-	<string>com.jetbrains.rider</string>
+	<string>com.google.android.studio</string>
 	<key>2_id</key>
-	<integer>3479</integer>
+	<integer>1313</integer>
 	<key>2_path</key>
-	<string>/Applications/Rider.app</string>
+	<string>/Applications/Android Studio.app</string>
 	<key>3_app</key>
 	<string>md.obsidian</string>
 	<key>3_id</key>
-	<integer>2836</integer>
+	<integer>1488</integer>
 	<key>3_path</key>
 	<string>/Applications/Obsidian.app</string>
 	<key>4_app</key>
@@ -41,9 +41,9 @@
 	<key>f1_app</key>
 	<string>xyz.chatboxapp.app</string>
 	<key>f1_id</key>
-	<integer>2022</integer>
+	<integer>40</integer>
 	<key>f1_path</key>
-	<string>/Applications/chatbox.app</string>
+	<string>/Applications/Chatbox.app</string>
 	<key>f2_app</key>
 	<string>com.microsoft.edgemac.app.mcpmngknmbggcjflkgnpejimnpdcbnin</string>
 	<key>f2_id</key>
@@ -53,14 +53,14 @@
 	<key>f3_app</key>
 	<string>com.microsoft.edgemac.app.pfglbpdbchikinhomjlnbkcflnjchemg</string>
 	<key>f3_id</key>
-	<integer>306</integer>
+	<integer>14645</integer>
 	<key>f3_path</key>
 	<string>/Users/apple/Applications/Edge Apps.localized/⁤⁤‌⁢⁡​⁢⁢​⁢⁡⁣⁣​​⁡​​⁡⁤﻿﻿⁤⁢⁢⁢​‍‌‍‍‍⁡⁡⁢﻿⁡⁢﻿⁢​⁢﻿​⁢‬⁣⁤⁢Bug List汇总.app</string>
 	<key>f4_app</key>
-	<string>org.hammerspoon.Hammerspoon</string>
+	<string>com.microsoft.edgemac.app.ilngljiianhfnehcgemangbggbiblidf</string>
 	<key>f4_id</key>
-	<integer>315</integer>
+	<integer>2948</integer>
 	<key>f4_path</key>
-	<string>/Applications/Hammerspoon.app</string>
+	<string>/Users/apple/Applications/Edge Apps.localized/project.app</string>
 </dict>
 </plist>
