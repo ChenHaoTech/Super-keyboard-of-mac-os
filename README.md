@@ -3,9 +3,9 @@ chenhao's  Hammerspoon Script Library
 窗口快捷键映射工具
 Window Shortcut Key Mapping Tool
 # Usage
-长按 cmd+shift+option+control + 0-9 绑定窗口, 之后再次短按 cmd+shift+option+control + 0-9 就可以激活绑定的窗口。相关的键盘映射配置在./lib/init.lua 文件里
+长按 cmd+shift+option+control + 0-9 绑定窗口, 之后再次短按 cmd+shift+option+control + 0-9 就可以激活绑定的窗口。相关的键盘映射配置在 init.lua 文件里
 
-Long press cmd+shift+option+control + 0-9 to bind windows, then short press cmd+shift+option+control + 0-9 again to activate the bound window. The relevant keyboard mapping configuration is in the ./lib/init.lua file.
+Long press cmd+shift+option+control + 0-9 to bind windows, then short press cmd+shift+option+control + 0-9 again to activate the bound window. The relevant keyboard mapping configuration is in the init.lua file.
 # Motivation
 之前在 window 系统使用 autohotkey 开发了一套的 键盘激活工具, 但是在 mac os 上没有找到合适的工具, 于是就有了这个项目
 Before, I developed a set of keyboard activation tools using autohotkey in window system, but I didn't find a suitable tool on mac OS, so I had this project.
