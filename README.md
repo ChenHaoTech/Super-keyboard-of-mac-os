@@ -9,6 +9,8 @@ Long press cmd+shift+option+control + 0~9 to bind windows, then short press cmd+
 # Motivation
 之前在 window 系统使用 autohotkey 开发了一套的 键盘激活工具, 但是在 mac os 上没有找到合适的工具, 于是就有了这个项目
 Before, I developed a set of keyboard activation tools using autohotkey in window system, but I didn't find a suitable tool on mac OS, so I had this project.
+
+ps: [chenhaoaixuexi/supper-keyboard: in order to use vim editor , i need a script to optimize my keyboard --- chenhaoaixuexi/supper-keyboard：为了使用vim编辑器，我需要一个脚本来优化我的键盘](https://github.com/chenhaoaixuexi/supper-keyboard)
 # Q & A
 ## what is Hammerspoon ?
 autohotkey in mac os 👍
