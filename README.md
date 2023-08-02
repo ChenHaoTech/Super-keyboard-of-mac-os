@@ -18,4 +18,4 @@ autohotkey in mac os 👍
 [Hammerspoon/hammerspoon: Staggeringly powerful macOS desktop automation with Lua --- Hammerspoon/hammerspoon：使用 Lua 的惊人强大的 macOS 桌面自动化](https://github.com/Hammerspoon/hammerspoon)
 # TODO
 - [x] 实现 capslock+0,1~9 的窗口绑定, 相关源码在window_utils.lua
-- [ ]  整理文件目录
+- [ ]  AI 键盘工具
