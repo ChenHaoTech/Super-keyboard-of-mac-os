@@ -273,6 +273,13 @@ end
 -- 3. 将收到响应: world test
 
 
+-- 存储 action 对应的回调函数
+local _callbacks = {}
+
+-- 绑定 action 回调函数
+function bindHttpCallback(action, callback)
+    _callbacks[action] = callback
+end
 
 -- 处理 HTTP 请求
 server:setCallback(function(method, path, headers, body)
@@ -333,35 +340,41 @@ server:setCallback(function(method, path, headers, body)
             }
         end
 
-        -- 根据 action 执行不同操作
-        if request.action == "toast" then
-            -- 检查payload
-            if not request.payload then
+        -- 查找并执行对应的回调函数
+        local callback = _callbacks[request.action]
+        if callback then
+            -- 执行回调函数
+            local success, result = pcall(callback, request.payload)
+            if success then
                 return hs.json.encode({
-                    code = 400,
-                    message = "Missing payload for toast action"
-                }), 400, {
+                    code = 200,
+                    message = "Success",
+                    data = result
+                }), 200, {
+                    ["Content-Type"] = "application/json",
+                    ["Access-Control-Allow-Origin"] = "*"
+                }
+            else
+                return hs.json.encode({
+                    code = 500,
+                    message = "回调函数执行失败",
+                    data = {
+                        error = result
+                    }
+                }), 500, {
                     ["Content-Type"] = "application/json",
                     ["Access-Control-Allow-Origin"] = "*"
                 }
             end
-
-            -- 显示 toast 消息
-            local message = request.payload.message or "Empty message"
-            hs.alert.show(message)
-            return hs.json.encode({
-                code = 200,
-                message = "Success"
-            }), 200, {
-                ["Content-Type"] = "application/json",
-                ["Access-Control-Allow-Origin"] = "*"
-            }
         end
 
         return hs.json.encode({
-            code = 400,
-            message = string.format("Unknown action: %s", request.action)
-        }), 400, {
+            code = 404,
+            message = "未找到对应的处理函数",
+            data = {
+                action = request.action
+            }
+        }), 404, {
             ["Content-Type"] = "application/json",
             ["Access-Control-Allow-Origin"] = "*"
         }
@@ -370,7 +383,7 @@ server:setCallback(function(method, path, headers, body)
     -- 其他路径返回 404
     return hs.json.encode({
         code = 404,
-        message = "Not Found"
+        message = "接口不存在"
     }), 404, {
         ["Content-Type"] = "application/json"
     }
@@ -387,3 +400,13 @@ end
 
 print("✅http server started")
 
+-- 注册示例回调
+bindHttpCallback("toast", function(payload)
+    if not payload or not payload.message then
+        error("缺少必要的消息内容")
+    end
+    hs.alert.show(payload.message)
+    return {
+        toast = "displayed"
+    }
+end)
