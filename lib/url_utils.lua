@@ -14,4 +14,4 @@ end)
 -- 也可以传入多个参数:
 -- open -g hammerspoon://ha_toast?value=nihao&name=张三
 -- 此时 params 表中会包含 value 和 name 两个参数
-hs.urlevent.openURL("hammerspoon://ha_toast?value=nihao&name=张三")
+-- hs.urlevent.openURL("hammerspoon://ha_toast?value=nihao&name=张三")
