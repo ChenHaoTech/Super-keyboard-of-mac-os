@@ -87,5 +87,6 @@ RecordFuncInvoke(function()
     require("lib.task_utils")
 end, "load extension")
 
+hs.alert.show("config reload success")
 -- testCallbackFn = function(result) print("Callback Result: " .. result) end
 -- hs.dialog.alert(0,0, testCallbackFn, "Message", "Informative Text", "Button One", "Button Two", "NSCriticalAlertStyle")
