@@ -81,7 +81,7 @@ function choose_window()
 end
 
 
-choose_window()
+-- choose_window()
 
 -- 参考: @url_utils.lua 实现绑定一个url，传入
 

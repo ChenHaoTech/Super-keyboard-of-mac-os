@@ -85,6 +85,7 @@ RecordFuncInvoke(function()
     require("lib.time_utils")
     require("lib.window_watch")
     require("lib.task_utils")
+    require("lib.http_server")
 end, "load extension")
 
 hs.alert.show("config reload success")

@@ -4,6 +4,7 @@ hs.urlevent.bind("ha_toast", function(eventName, params)
     -- 直接显示传入的value参数内容
     -- hs.alert.show(string.format("%s %s", params.value, params.name))
     hs.alert.show(params.value)
+    return "fuck"
 end)
 
 -- 使用案例:
