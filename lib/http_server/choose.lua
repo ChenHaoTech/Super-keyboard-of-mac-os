@@ -20,33 +20,39 @@ bindHttpCallback("choose", function(payload)
         error("choices数组不能为空")
     end
 
-    -- 创建一个promise来等待choose结果
-    local promise = {}
-    promise.done = false
-    promise.result = nil
-
-    print("✅ choose请求开始")
-    -- 调用choose并保存结果
-    custom_choose(
-        payload.placeholder,
-        payload.choices,
-        function(choice)
-            promise.done = true
-            promise.result = choice
-            print("用户选择了:", hs.json.encode(choice))
-        end
-    )
-
-    -- 等待choose完成
-    while not promise.done do
-        hs.timer.usleep(1000)
+    -- 创建协程
+    local co
+    local result
+    co = coroutine.create(function()
+        print("✅ choose请求开始")
+        
+        custom_choose(
+            payload.placeholder,
+            payload.choices,
+            function(choice)
+                result = choice
+                print("用户选择了:", hs.json.encode(choice))
+                coroutine.resume(co, result)
+            end
+        )
+        
+        -- 暂停协程，等待选择完成
+        result = coroutine.yield()
+        
+        -- print("✅ choose请求完成")
+        -- return {
+        --     choice = result
+        -- }
+    end)
+    -- 启动协程
+    local success, result = coroutine.resume(co)
+    if not success then
+        error("协程执行失败: " .. tostring(result))
+    else
+        print("✅ choose请求完成, result:" .. tostring(result))
     end
-
-    -- 返回选择结果
-    print("✅ choose请求完成")
-    return {
-        choice = promise.result
-    }
+    
+    return result
 end)
 
 --[[ 使用示例:

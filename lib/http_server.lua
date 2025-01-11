@@ -282,6 +282,16 @@ function bindHttpCallback(action, callback)
     print("bindHttpCallback", action)
 end
 
+
+-- 提供停止服务器的函数
+function stop_http_server()
+    server:stop()
+    print("❌http server stopped")
+end
+
+
+
+stop_http_server()
 -- 处理 HTTP 请求
 server:setCallback(function(method, path, headers, body)
     -- 检查路径是否为 /invoke
@@ -392,12 +402,6 @@ end)
 
 -- 默认启动服务器
 server:start()
-
--- 提供停止服务器的函数
-function stop_http_server()
-    server:stop()
-    print("❌http server stopped")
-end
 
 print("✅http server started")
 
