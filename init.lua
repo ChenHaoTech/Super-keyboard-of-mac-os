@@ -66,7 +66,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "Q",
 RecordFuncInvoke(function()
     require("lib.alert_utls")
     require("lib.mouse_utils")
-    require("lib.caffeine_utils")
+    require("lib.caffeine_utils") 
     require("lib.application_utils")
     require("lib.hotkey_utils")
     require("lib.url_utils")

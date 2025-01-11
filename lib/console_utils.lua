@@ -5,3 +5,7 @@ hs.urlevent.bind("clearConsole", function(eventName, params)
     hs.console.clearConsole()
 end)
 
+hs.urlevent.bind("toast", function(eventName, params)
+    PrintTable(params)
+    hs.alert.show(params["msg"])
+end)
