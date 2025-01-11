@@ -279,6 +279,7 @@ local _callbacks = {}
 -- 绑定 action 回调函数
 function bindHttpCallback(action, callback)
     _callbacks[action] = callback
+    print("bindHttpCallback", action)
 end
 
 -- 处理 HTTP 请求
@@ -400,13 +401,7 @@ end
 
 print("✅http server started")
 
--- 注册示例回调
-bindHttpCallback("toast", function(payload)
-    if not payload or not payload.message then
-        error("缺少必要的消息内容")
-    end
-    hs.alert.show(payload.message)
-    return {
-        toast = "displayed"
-    }
-end)
+
+
+require("lib.http_server.choose")
+require("lib.http_server.toast")
